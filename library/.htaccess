@@ -1,0 +1,2 @@
+php_value date.timezone "Europe/Kiev"
+php_value display_errors 2
