@@ -1,0 +1,1 @@
+<?php echo '<div style="width: 100%; background-color: red; height: 50px">header</div>'; ?>
