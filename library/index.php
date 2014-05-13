@@ -1,6 +1,6 @@
 <?php
-require_once 'Controllers/FrontController.php'; // подключение
-$controller = new FrontController(); // новая переменная
+require_once 'Controllers/FrontController.php';
+$controller = new FrontController();
 
 $action = "";
 $result = "";
@@ -10,7 +10,7 @@ if ( isset($_GET['action']) ){
 switch ($action) {
     case "categories":
         echo $controller->categories();
-        break; // если откріваеться страница категория, то віводить ехо
+        break;
     case "page":
         echo $controller->page();
         break;
