@@ -21,23 +21,21 @@ class AdminController extends AppController {
 
     //Pages
     //List of pages
-    public function list_pages() 
-            {
-        return $this->result;
-        $db_result = $this->DB->query("SELECT * FROM pages"); 
-        $page = $this->readFile ('Admin/' . __FUNCTION__ . '.phtml'); 
+    public function list_pages(){
+        $db_result = $this->DB->query("SELECT * FROM pages");
+        $page = $this->readFile ('Admin/' . __FUNCTION__ . '.phtml');
         $body = "";
-        
+
         $body.= "<p><a href = admin.php?action=edit_page>Add new page</a></p>";
         while ($row = mysql_fetch_assoc($db_result)) {
-            $body.=str_replace(array('{ID}', '{TITLE}'), array ($row($row['id'], $row['title']),$page)); 
+            $body .= str_replace(array('{ID}', '{TITLE}'), array ($row['id'], $row['title']),$page);
         }
         if (isset($_GET['res'])){
             if($_GET['res'] == 'success_delete'){
                 $body = '<div class = "success">Успешно удалено</div>'.$body;
             }
         }
-        
+
         $this->result = str_replace('{BODY}', $body, $this->result);
         return $this->result;
     }
@@ -48,22 +46,22 @@ class AdminController extends AppController {
         return $this->result;
         $page = $this->readFile('Admin/' . __FUNCTION__ . '.phtml');
         $body = "";
-        
+
         $id =0;
         if (isset ($_GET['id'])){
             $id = (int)$_GET['id'];
         }
         $success_message = "";
         $error_message ="";
-        
+
         if (empty ($_POST)){
             if ($id >0){
                 $db_result = $this->DB->query("SELECT * FROM pages WHERE id =".(int)$_GET['id']);
                 while ($row = mysql_fetch_assoc($db_result)){
                     $body.=str_replace(array ('{ID}','{TITLE}',  '{PAGE_BODY}'), array ($row ['id'], $row['title'] ,  $row['body']), $page);
- 
+
                 }
-                
+
             }  else {
                 $body.=str_replace (array ('{ID}', '{TITLE}',), array(), $page);
             }
@@ -83,7 +81,7 @@ class AdminController extends AppController {
              }
              $body.=str_replace(array ('{ID}', '{TITLE}', '{PAGE_BODY}'),array($id, $row['title'], $row['body']), $page );
         }
-        
+
         $body = str_replace(array('{ERROR_MSG}', '{SUCCESS_MSG}'), array($error_message, $success_message), $body);
         $this->result = str_replace('{PAGE_BODY}', $body, $this->result);
         return $this->result;
@@ -97,7 +95,7 @@ class AdminController extends AppController {
             header("Location: admin.php?action=pages&res=success_delete");
         }
         return $this->result;
-        
+
     }
 
     //Categories

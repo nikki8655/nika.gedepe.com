@@ -1,14 +1,29 @@
-<h1>Привет</h1>
+<html>
+<head>
+<script type='text/javascript'>
+for(var i=100; i>=0; i-=10){
 
-    <?php
-function func1(){
-    echo 'hello <br>';
-}
-func1();
+if(i==90){
 
-function func2 ($p1, $p2){
-    $d = $p1 / $p2;
-    echo "func2:  $p1 / $p2 = $d";   
+continue;
+
+} else if(i==70){
+
+continue;
+
+}else if(i==30){
+
+continue;
+
 }
-func2(12, 6);
-?>
+
+document.write('Число: '+i+'
+');
+
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>
